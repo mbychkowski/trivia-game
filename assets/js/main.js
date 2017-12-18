@@ -1,0 +1,1 @@
+    $('#start').on('click', beginGame)
