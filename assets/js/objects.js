@@ -14,8 +14,8 @@ function TriviaQuestion(question, answer, options) {
     newCorrectButtonEl.addClass('btn-dark col-sm-12 m-3');
 
     newCorrectButtonEl.click(function() {
-      newCorrectButtonEl.removeClass('btn-dark');
-      newCorrectButtonEl.addClass('btn-success');
+      $(this).removeClass('btn-dark');
+      $(this).addClass('btn-success');
     });
 
     var buttonText = this.answer;
@@ -34,8 +34,8 @@ function TriviaQuestion(question, answer, options) {
       newIncorrectButtonEl.addClass('btn-dark col-sm-12 m-3');
 
       newIncorrectButtonEl.click(function() {
-        newIncorrectButtonEl.removeClass('btn-dark');
-        newIncorrectButtonEl.addClass('btn-danger');
+        $(this).removeClass('btn-dark');
+        $(this).addClass('btn-danger');
       });
 
       var insertIndex = randomGenerator(0, newIncorrectButtonElArr.length);
