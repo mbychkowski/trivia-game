@@ -4,12 +4,13 @@ var question = [
   'What time is it'
 ];
 
-var correctChoice = [
+var correctAnswer = [
   'good',
   'not as good as today',
-  'noon'];
+  'noon'
+];
 
-var wrongChoice = [
+var wrongAnswers = [
   ['bad', 'okay', 'angry'],
   ['super', 'splendid', 'excellent'],
   ['13:00', '11:59', '12:01']
