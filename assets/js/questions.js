@@ -1,17 +1,23 @@
 var question = [
-  'How are you feeling today?',
-  'How were you feeling yesterday',
-  'What time is it'
+  'Speak _____ and enter.',
+  'Who parished at the bridge of Khazad-Dum?',
+  'Where does Frodo first meet Aragorn?',
+  'Who was NOT part of the fellowship of the ring?',
+  'How many rings of power were given to the dwarves?',
 ];
 
 var correctAnswer = [
-  'good',
-  'not as good as today',
-  'noon'
+  'friend',
+  'Gandalf the Grey',
+  'The Prancing Pony',
+  'Galadriel',
+  '7'
 ];
 
 var wrongAnswers = [
-  ['bad', 'okay', 'angry'],
-  ['super', 'splendid', 'excellent'],
-  ['13:00', '11:59', '12:01']
+  ['true', 'wise', 'modest'],
+  ['Gandalf the White', 'Boromir', 'Gimli'],
+  ['The Green Dragon', 'Rivendale', 'The Shire'],
+  ['Frodo', 'Sam', 'Legolas'],
+  ['3','9','1']
 ];

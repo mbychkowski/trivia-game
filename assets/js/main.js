@@ -1,31 +1,32 @@
 var gameBoard = $('#game-board');
 var questionNumber = 0;
-var countDown = 15; // seconds
+var countDown = 16; // seconds
+var wins = 0;
+var losses = 0;
+var missed = 0;
 
 $('#start').on('click', beginGame);
 
 function beginGame() {
-  newPlayer = new Player();
 
   gameBoard.empty();
   generateQuestions();
   displayQuestion();
   generateMultipleChoice();
-
-  timerRun(countDown);
 }
 
 function askNewQuestion() {
-  timerStop()
 
   gameBoard.empty();
   displayQuestion();
   generateMultipleChoice();
-
-  timerRun(countDown);
 }
 
 function reset() {
+  wins = 0;
+  losses = 0;
+  missed = 0;
+
   beginGame();
 }
 
@@ -44,6 +45,7 @@ function displayQuestion() {
   // if no questions available ...
   if (questionNumber === question.length) {
     timerStop();
+    $("#show-timer").empty();
 
     var endGameContainer = $('<div>');
 
@@ -52,24 +54,29 @@ function displayQuestion() {
     var endGameResults = $('<h3>');
     endGameResults.html('<strong>Results</strong>: ')
     var userCorrect = $('<h3>');
-    userCorrect.text('Answered Correctly Goes Here: ' + 1);
+    userCorrect.text('Answered Correctly: ' + wins);
     var userIncorrect = $('<h3>');
-    userIncorrect.text('Answered Incorrectly Goes Here: ' + 6);
+    userIncorrect.text('Answered Incorrectly: ' + losses);
+    var userMissed = $('<h3>');
+    userMissed.text('Missed Question: ' + missed);
     var resetButton = $('<button>');
-    resetButton.text('RESET')
+    resetButton.text('Try Again!')
     resetButton.on('click', reset);
 
     // Reset button here as well with calling function from elsewhere.
 
-    endGameContainer.append(endGameTitle, endGameResults, userCorrect, userIncorrect, resetButton);
+    endGameContainer.append(endGameTitle, endGameResults, userCorrect, userIncorrect, userMissed, resetButton);
     gameBoard.append(endGameContainer);
 
   } else {
+    timerStop();
 
     var newQuestionEl = $('<p>');
     var questionText = newQuestions[questionNumber].question;
     newQuestionEl.append(questionText);
     gameBoard.append(newQuestionEl);
+
+    timerRun(countDown);
   }
 }
 
@@ -94,16 +101,17 @@ var intervalId;
 function timerRun(countDown) {
   intervalId = setInterval(function() {
     countDown--;
-    console.log(countDown);
 
     if (countDown === 0) {
       timerStop();
       alert("Time Up!");
+      missed++;
+      askNewQuestion();
     }
 
-  }, 1000);
+    $("#show-timer").text(countDown);
 
-  $("#show-timer").html("<h2>" + countDown + "</h2>");
+  }, 1000);
 }
 
 function timerStop() {

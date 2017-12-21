@@ -13,8 +13,13 @@ function TriviaQuestion(question, answer, options) {
     newCorrectButtonEl.on('click', function() {
       $(this).removeClass('btn-dark');
       $(this).addClass('btn-success');
+      wins++;
 
-      var delayNextQuestion = setTimeout(askNewQuestion, 2000);
+      // var displayAnswer = ('<div>');
+      // displayAnswer.addClass('answer-border');
+      // displayAnswer.text($(this).attr('data-answer'));
+
+      var delayNextQuestion = setTimeout(askNewQuestion, 1500);
     });
 
     var buttonText = this.answer;
@@ -36,8 +41,13 @@ function TriviaQuestion(question, answer, options) {
       newIncorrectButtonEl.on('click', function() {
         $(this).removeClass('btn-dark');
         $(this).addClass('btn-danger');
+        losses++;
 
-        var delayNextQuestion = setTimeout(askNewQuestion, 2000);
+        // var displayAnswer = ('<div>');
+        // displayAnswer.addClass('answer-border');
+        // displayAnswer.text($(this).attr('data-answer'));
+
+        var delayNextQuestion = setTimeout(askNewQuestion, 1500);
       });
 
       var insertIndex = randomGenerator(0, newIncorrectButtonElArr.length);
@@ -61,20 +71,6 @@ function TriviaQuestion(question, answer, options) {
     multipleChoiceArr.splice(insertIndex, 0, correctAnswer);
 
     return multipleChoiceArr;
-  }
-}
-
-function Player() {
-
-  this.correct = 0;
-  this.incorrect = 0;
-
-  this.answeredCorrectly = function() {
-    this.score++;
-  }
-
-  this.answeredIncorrectly = function() {
-    this.score++;
   }
 }
 
