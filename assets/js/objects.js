@@ -6,16 +6,15 @@ function TriviaQuestion(question, answer, options) {
 
   this.getCorrectAnswer = function() {
 
-    // In this button incorporate on button click -> Remove gameboard and reopen
-    // with new set of questions
-
     var newCorrectButtonEl = $('<button>');
     newCorrectButtonEl.attr('data-answer', this.answer);
-    newCorrectButtonEl.addClass('btn-dark col-sm-12 m-3');
+    newCorrectButtonEl.addClass('btn-dark answer col-sm-12 m-3');
 
-    newCorrectButtonEl.click(function() {
+    newCorrectButtonEl.on('click', function() {
       $(this).removeClass('btn-dark');
       $(this).addClass('btn-success');
+
+      var delayNextQuestion = setTimeout(askNewQuestion, 2000);
     });
 
     var buttonText = this.answer;
@@ -29,13 +28,16 @@ function TriviaQuestion(question, answer, options) {
     var newIncorrectButtonElArr = [];
 
     for (var i = 0; i < this.options.length; i++) {
+
       var newIncorrectButtonEl = $('<button>');
       newIncorrectButtonEl.attr('data-answer', this.options[i]);
-      newIncorrectButtonEl.addClass('btn-dark col-sm-12 m-3');
+      newIncorrectButtonEl.addClass('btn-dark answer col-sm-12 m-3');
 
-      newIncorrectButtonEl.click(function() {
+      newIncorrectButtonEl.on('click', function() {
         $(this).removeClass('btn-dark');
         $(this).addClass('btn-danger');
+
+        var delayNextQuestion = setTimeout(askNewQuestion, 2000);
       });
 
       var insertIndex = randomGenerator(0, newIncorrectButtonElArr.length);
@@ -64,9 +66,14 @@ function TriviaQuestion(question, answer, options) {
 
 function Player() {
 
-  this.score = score;
+  this.correct = 0;
+  this.incorrect = 0;
 
   this.answeredCorrectly = function() {
+    this.score++;
+  }
+
+  this.answeredIncorrectly = function() {
     this.score++;
   }
 }

@@ -1,4 +1,4 @@
-var countDown = 100; // seconds
+var countDown = 15; // seconds
 var intervalId;
 
 function timerRun() {
