@@ -1,3 +1,5 @@
+// This would be better incorporated as an object. Rather than seperate arrays.
+
 var question = [
   'Speak _____ and enter.',
   'Who parished at the bridge of Khazad-Dum?',
